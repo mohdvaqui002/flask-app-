@@ -53,7 +53,7 @@ Please place your verification screenshots in the "./screenshots/" folder:
    Save as: ./screenshots/jenkins_build_success.png
 
 2. Docker Hub Pushed Image Screenshot:
-   Save as: ./screenshots/docker_hub_success.png
+   https://github.com/mohdvaqui002/flask-app-/blob/main/screenshots/docker_hub_success.png
 
 3. Running Flask Application Screenshot:
    Save as: ./screenshots/flask_running_success.png
