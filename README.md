@@ -1,4 +1,4 @@
-# Jenkins CI/CD: Dockerized Flask Application (Complete Guide)
+# Jenkins CI/CD: Dockerized Flask Application 
 
 This guide provides a step-by-step setup to build, push, and deploy a Python Flask application using **Jenkins** and **Docker-outside-of-Docker (DooD)**.
 
