@@ -1,0 +1,49 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_HUB_USER = 'mohdvaqui002'
+        IMAGE_NAME      = 'flask-docker-app'
+        IMAGE_TAG       = "${BUILD_NUMBER}"
+        REGISTRY_CRED   = 'docker-hub-creds'
+    }
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh "docker build -t ${DOCKER_HUB_USER}/${IMAGE_NAME}:${IMAGE_TAG} ."
+                sh "docker tag ${DOCKER_HUB_USER}/${IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest"
+            }
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: REGISTRY_CRED, usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                    sh "echo ${PASS} | docker login -u ${USER} --password-stdin"
+                    sh "docker push ${DOCKER_HUB_USER}/${IMAGE_NAME}:${IMAGE_TAG}"
+                    sh "docker push ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest"
+                }
+            }
+        }
+
+        stage('Deploy Application') {
+            steps {
+                sh "docker stop ${IMAGE_NAME} || true"
+                sh "docker rm ${IMAGE_NAME} || true"
+                sh "docker run -d --name ${IMAGE_NAME} -p 5000:5000 ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest"
+            }
+        }
+    }
+    
+    post {
+        always {
+            sh "docker logout"
+        }
+    }
+}
