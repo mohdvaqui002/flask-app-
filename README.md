@@ -30,14 +30,4 @@ SETUP & RUNNING INSTRUCTIONS
    - Set SCM to "Git" and use your repository URL.
    - Add an "Execute shell" build step and paste the deployment script.
    - Click "Build Now" to run.
-------------------------------------------------------------------------
-PROOF OF COMPLETION
-------------------------------------------------------------------------
-Please place your verification screenshots in the "./screenshots/" folder:
-1. Jenkins Build Success Screenshot:
-   Save as: ./screenshots/jenkins_build_success.png
-2. Docker Hub Pushed Image Screenshot:
-   Save as: ./screenshots/docker_hub_success.png
-3. Running Flask Application Screenshot:
-   Save as: ./screenshots/flask_running_success.png
 ========================================================================
