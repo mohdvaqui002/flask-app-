@@ -115,5 +115,3 @@ docker run -d --name cwvj-flask -p 5000:5000 $DOCKER_USER/flask-doc:latest
 ```
 
 ---
-### 3. Running Website
-![Running Application](./screenshots/screenshotsflask%20running%20success.png)
