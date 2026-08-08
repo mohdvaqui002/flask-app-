@@ -1,10 +1,12 @@
-# Jenkins CI/CD: Dockerized Flask Application 
-This guide provides a step-by-step setup to build, push, and deploy a Python Flask application using **Jenkins** and **Docker-outside-of-Docker (DooD)**.
----
-## 🏗️ Step 1: Set Up Jenkins Container (DooD)
+Jenkins CI/CD: Dockerized Flask Application (Complete Guide)
+This guide provides a step-by-step setup to build, push, and deploy a Python Flask application using Jenkins and Docker-outside-of-Docker (DooD).
+
+🏗️ Step 1: Set Up Jenkins Container (DooD)
 To let Jenkins talk to your host's Docker daemon, you must mount the Docker socket file when starting Jenkins.
-### Command to Run Jenkins:
-```bash
+
+Command to Run Jenkins:
+bash
+
 docker run -d --name jenkins --restart unless-stopped \
   -p 8080:8080 -p 50000:50000 \
   -v jenkins_home:/var/jenkins_home \
@@ -25,7 +27,6 @@ By default, the Docker socket is locked for security. You must unlock it so Jenk
 Command to Unlock Socket:
 bash
 
-
 docker exec -u root -it jenkins chmod 666 /var/run/docker.sock
 💡 What this command means:
 docker exec: Runs a command inside a container that is already running.
@@ -37,7 +38,6 @@ Jenkins needs the docker command utility installed inside it so it can build ima
 
 Command to Install Docker:
 bash
-
 
 docker exec -u root -it jenkins bash -lc \
   'curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh'
@@ -65,7 +65,6 @@ Click Create.
 In your Freestyle job, add an Execute Shell build step and paste this script:
 
 bash
-
 
 # 1. Set your credentials directly
 DOCKER_USER="your_dockerhub_username"
