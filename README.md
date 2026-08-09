@@ -109,9 +109,9 @@ docker logout
 
 # 5. Deploy
 # Stops and deletes the old container to free up port 5000, then starts the new one
-docker stop cwvj-flask || true
-docker rm cwvj-flask || true
-docker run -d --name cwvj-flask -p 5000:5000 $DOCKER_USER/flask-doc:latest
+docker stop flask || true
+docker rm flask || true
+docker run -d --name flask -p 5000:5000 $DOCKER_USER/flask-doc:latest
 ```
 
 ---
